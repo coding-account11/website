@@ -1,0 +1,65 @@
+<!-- ================================
+       START LOGIN AREA
+================================= -->
+<section class="login-area section--padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+                <div class="card-box-shared">
+                    <div class="card-box-shared-title text-center">
+                        <h3 class="widget-title font-size-25">Login to Your Account!</h3>
+                    </div>
+                    <div class="card-box-shared-body">
+                        <div class="contact-form-action">
+                            <form method="post" action="/users/login" id="login-form">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="input-box">
+                                            <label class="label-text">Email<span
+                                                    class="primary-color-2 ml-1">*</span></label>
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" name="email" id="email"
+                                                    placeholder="Email">
+                                                <span class="la la-envelope input-icon"></span>
+                                            </div>
+                                        </div>
+                                    </div><!-- end col-md-12 -->
+                                    <div class="col-lg-12">
+                                        <div class="input-box">
+                                            <label class="label-text">Password<span
+                                                    class="primary-color-2 ml-1">*</span></label>
+                                            <div class="form-group">
+                                                <input class="form-control" type="password" name="pass" id="pass"
+                                                    placeholder="Password">
+                                                <span class="la la-lock input-icon"></span>
+                                            </div>
+                                        </div>
+                                    </div><!-- end col-md-12 -->
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <div class="custom-checkbox d-flex justify-content-between">
+                                                <input type="checkbox" id="chb1">
+                                                <label for="chb1">Remember Me</label>
+                                                <a href="/pages/phone-login" class="primary-color-2"></a>
+                                                <a href="/pages/recover-page" class="primary-color-2"></a>
+                                            </div>
+                                        </div>
+                                    </div><!-- end col-md-12 -->
+                                    <div class="col-lg-12 ">
+                                        <div class="btn-box">
+                                            <button class="theme-btn" type="submit">Login</button>
+                                        </div>
+                                    </div><!-- end col-md-12 -->
+                                    <div class="col-lg-12">
+                                        <p class="mt-4">Don't have an account? <a href="/pages/register-page"
+                                                class="primary-color-2">Register</a></p>
+                                    </div><!-- end col-md-12 -->
+                                </div><!-- end row -->
+                            </form>
+                        </div><!-- end contact-form -->
+                    </div>
+                </div>
+            </div><!-- end col-lg-7 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end login-area -->

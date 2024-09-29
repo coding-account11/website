@@ -1,0 +1,151 @@
+<div class="row m-4 d-flex justify-content-center">
+  <div class="prof-view container rounded p-4 pt-5">
+    <!-- <% if(!isSubscribed) { %> -->
+    <!-- <div
+      data-toggle="modal"
+      data-target="#smallModalTwo"
+      class="lock-container"
+    >
+      <span class="lock"></span>
+    </div> -->
+    <!-- <% } %> -->
+    <div class="row">
+      <% if(result.imageURL) { %>
+      <img
+        class="rounded-circle prof-pic mx-auto"
+        src="<%= result.imageURL %>"
+        alt=""
+      />
+      <% } else { %>
+      <span
+        class="prof-pic m-auto disabled rounded-circle text-center text-light bg-secondary"
+        style="font-size: 5rem; padding: 47px"
+      >
+        <%= result.username.charAt(0).toUpperCase() %>
+      </span>
+      <% } %>
+    </div>
+    <div class="row d-flex justify-content-center mt-3 mb-3">
+      <h3 class="text-center font-weight-bolder"><%= result.username %></h3>
+    </div>
+    <div class="row">
+      <div
+        class="col-xl-4 px-0 col-lg-5 col-md-7 col-sm-8 col-9 container d-flex justify-content-between pt-2"
+        style="border-top: 1px solid silver"
+      >
+        <h6 class="my-auto h5">Member Since</h6>
+        <span class="font-weight-bold" style="font-size: 1.25rem"
+          ><%= result.joinDate ? result.joinDate : "--" %></span
+        >
+      </div>
+    </div>
+    <form method="POST" action="/users/updateUser">
+      <div class="person-des mx-xl-5 mx-lg-5 mx-md-5 mx-sm-2 mt-4">
+        <div class="container">
+          <div class="row m-1 my-2">
+            <h4 class="font-weight-bold my-auto">Description</h4>
+            <button class="btn ml-auto input-toggle-btn" id="input-btn1">
+              <span class="h5 text-right">
+                <i class="fa fa-pencil"></i>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="container rounded-bottom">
+          <div class="row m-1 my-2">
+            <p
+              class="font-weight-bold toggled-para card-text text-secondary"
+              id="current-bio"
+            >
+              <%= result.bio ? result.bio : "--" %>
+            </p>
+            <textarea
+              class="w-100 toggled-input d-none"
+              rows="3"
+              style="resize: none"
+              id="bio"
+              name="bio"
+            >
+<%= result.bio === '--' ? '' : result.bio %></textarea
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div
+          class="col-xl-6 col-lg-6 col-md-7 col-sm-8 col-9 pl-xl-5 pl-lg-5 pl-md-0 px-md-auto pr-xl-3 pr-lg-3 pr-md-0"
+        >
+          <div class="person-des ml-xl-5 ml-lg-5 ml-md-0 mx-md-auto mt-4">
+            <div class="container">
+              <div class="row m-1 my-2">
+                <h4 class="font-weight-bold my-auto">Title</h4>
+                <button class="btn ml-auto input-toggle-btn">
+                  <span class="h5 text-right">
+                    <i class="fa fa-pencil"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="container rounded-bottom">
+              <div class="row m-1 my-2">
+                <p class="font-weight-bold toggled-para">
+                  <%= result.title ? result.title : "--" %>
+                </p>
+                <input
+                  class="toggled-input w-100 d-none"
+                  type="text"
+                  id="title"
+                  name="title"
+                  value="<%= result.title === '--' ? '' : result.title %>"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-xl-6 col-lg-5 col-md-6 col-sm-8 col-9 pr-xl-5 pr-lg-5 pr-md-0 px-md-auto pl-xl-3 pl-lg-3 pl-md-0"
+        >
+          <div class="person-des mr-xl-5 mr-lg-5 mr-md-0 mx-md-auto mt-4">
+            <div class="container">
+              <div class="row m-1 my-2">
+                <h4 class="font-weight-bold my-auto">Location/Area</h4>
+                <button class="btn ml-auto input-toggle-btn">
+                  <span class="h5 text-right">
+                    <i class="fa fa-pencil"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="container rounded-bottom">
+              <div class="row m-1 my-2">
+                <p class="font-weight-bold toggled-para">
+                  <%= result.location ? result.location : "--" %>
+                </p>
+                <input
+                  class="toggled-input w-100 d-none"
+                  type="text"
+                  id="location"
+                  name="location"
+                  value="<%= result.location === '--' ? '' : result.location %>"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mt-4 row d-flex justify-content-xl-end justify-content-lg-end justify-content-md-between justify-content-sm-between justify-content-between"
+      >
+        <div class="col-xl-3 col-lg-4 col-12 d-flex justify-content-center">
+          <button
+            type="submit"
+            class="btn btn-primary btn-large disabled"
+            id="save-btn"
+          >
+            Save changes
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

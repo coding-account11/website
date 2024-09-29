@@ -1,0 +1,13 @@
+.video-links:hover{
+    cursor: pointer;
+    background-color: #e8e8e8 !important;
+}
+
+.active-video {
+    background-color: silver !important;
+}
+
+.prof-view a:hover {
+    text-decoration: underline;
+    color: inherit;
+}

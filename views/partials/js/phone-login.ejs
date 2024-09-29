@@ -1,0 +1,156 @@
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-select.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/magnific-popup.min.js"></script>
+<script src="/js/isotope.js"></script>
+<script src="/js/waypoint.min.js"></script>
+<script src="/js/jquery.counterup.min.js"></script>
+<script src="/js/fancybox.js"></script>
+<script src="/js/wow.js"></script>
+<script src="/js/smooth-scrolling.js"></script>
+<script src="/js/date-time-picker.js"></script>
+<script src="/js/emojionearea.min.js"></script>
+<script src="/js/jquery.filer.min.js"></script>
+<script src="/js/tooltipster.bundle.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyDMW8ltMlgJmSk-uMUMh5Ne6khvmRePCgU",
+    authDomain: "project-awesome-id-1234.firebaseapp.com",
+    projectId: "project-awesome-id-1234",
+    storageBucket: "project-awesome-id-1234.appspot.com",
+    messagingSenderId: "171110280151",
+    appId: "1:171110280151:web:d16539d4d22581b89fb992"
+  };
+  firebase.initializeApp(firebaseConfig);
+  $('#phoneNumberError').hide()
+</script>
+<script>
+
+  function updateCountryCodeInHtml() {
+    document.getElementById("mobileNumber").value = document.getElementById("exampleForm.ControlSelect1").value;
+    document.getElementById("mobileNumber").innerText = document.getElementById("exampleForm.ControlSelect1").value;
+
+  }
+
+  function render() {
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+      "recaptcha-container"
+    );
+    recaptchaVerifier.render();
+  }
+
+  function phoneAuth() {
+    var number = document.getElementById("mobileNumber").value;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function (response) {
+      if (xhttp.readyState == 4 && xhttp.status == 200) {
+        const { exists } = JSON.parse(xhttp.responseText)
+        if (!exists) {
+          render();
+          firebase
+            .auth()
+            .signInWithPhoneNumber(number, window.recaptchaVerifier)
+            .then(function (confirmationResult) {
+              window.confirmationResult = confirmationResult;
+              coderesult = confirmationResult;
+              document.getElementById("recaptcha-container").innerHTML = "Code Sent Successfully";
+            })
+            .catch(function (error) {
+              alert(error.message);
+            });
+        } else {
+          $('#phoneNumberError').show()
+        }
+      }
+    };
+    xhttp.open("GET", "/users/phone?phone=" + number);
+    xhttp.send();
+
+
+
+
+  }
+
+  function showOtpForm() {
+    var otpForm = document.getElementById("otpForm");
+    var loginForm = document.getElementById("showLoginForm");
+    otpForm.style.display = "block";
+    loginForm.style.display = "none";
+  }
+
+  function showLoginForm() {
+    var otpForm = document.getElementById("otpForm");
+    var loginForm = document.getElementById("showLoginForm");
+    otpForm.style.display = "none";
+    loginForm.style.display = "block";
+  }
+
+  function codeverify() {
+
+    var code = document.getElementById("verificationCode").value;
+    var mobileNumber = document.getElementById("mobileNumber").value;
+
+    console.log(code);
+    coderesult
+      .confirm(code)
+      .then(function (result) {
+        tester(mobileNumber)
+
+
+        // var xhttp = new XMLHttpRequest();
+        // xhttp.onreadystatechange = function (data) {
+        //   if (xhttp.readyState == 4 && xhttp.status == 200) {
+        //     alert('Registered Successfully Proceed to Login');
+        //   }
+        // };
+
+        // const queryString = window.location.search;
+
+        // const urlParams = new URLSearchParams(queryString);
+
+        // const data = urlParams.get('user')
+        // data.phone = mobileNumber
+
+        // console.log(data)
+
+        // console.log("dataFromServer : ", data);
+        // xhttp.open("GET", "/users/go-with-it?data=" + data, true);
+        // xhttp.send();
+        // window.location.href = "/";
+      })
+      .catch(function (error) {
+        alert(error.message);
+      });
+  }
+
+  function tester(number) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function (data) {
+      if (this.readyState == 4 && this.status == 200) {
+        alert('Registered Successfully Proceed to Login');
+        window.location.href = "/";
+      }
+    };
+    const queryString = window.location.search;
+
+    const urlParams = new URLSearchParams(queryString);
+
+    const data = urlParams.get('user')
+    const obj = JSON.parse(data)
+    obj.phone = number
+
+    console.log(data)
+    console.log("dataFromServer : ", JSON.stringify(obj));
+    xhttp.open("GET", "/users/go-with-it?data=" + JSON.stringify(obj), true);
+    xhttp.send();
+
+
+  }
+</script>

@@ -1,0 +1,101 @@
+<div class="background">
+  <div class="container">
+    <div class="panel pricing-table">
+      <div class="pricing-plan">
+        <img src="https://s22.postimg.cc/8mv5gn7w1/paper-plane.png" alt="" class="pricing-img" />
+        <h2 class="pricing-header">Free Plan</h2>
+        <ul class="pricing-features">
+          <li class="pricing-features-item">Free search</li>
+          <li class="pricing-features-item">5 free videos</li>
+        </ul>
+        <span class="pricing-price">Free</span>
+        <a href="#/" class="pricing-button">Started</a>
+      </div>
+
+      <div class="pricing-plan">
+        <img src="https://s28.postimg.cc/ju5bnc3x9/plane.png" alt="" class="pricing-img" />
+        <h2 class="pricing-header">Lion Monthly Plan</h2>
+        <ul class="pricing-features">
+          <li class="pricing-features-item">Exclusive access to deals, perks, and resources.</li>
+          <li class="pricing-features-item">Offline access</li>
+          <li class="pricing-features-item">Complete access of courses</li>
+          <li class="pricing-features-item">Add your own courses</li>
+          <li class="pricing-features-item">Update your profile</li>
+          <li class="pricing-features-item">Supporting teachers, and businesses</li>
+          <li class="pricing-features-item">No ads</li>
+          <li class="pricing-features-item">Donations to charities that help preserve endangered wildlife.</li>
+        </ul>
+        <span class="pricing-price">$<%= monthlyCost %>/Month</span>
+        <% if(isSubscribed && period == "Month") { %>
+        <a href="#" class="pricing-button-red" data-toggle="modal" data-target="#smallModal">Cancel</a>
+        <!-- <button class="pricing-button-red">Cancel</button> -->
+        <% } else if(!isSubscribed){ %>
+        <form method="POST" action="/payment">
+          <input name="subscriptionType" value="M" type="hidden" readonly />
+          <button type="submit" class="pricing-button is-featured">
+            Pay Now
+          </button>
+        </form>
+        <% } else { %>
+        <button type="submit" disabled="disabled" class="pricing-button is-featured">
+          Pay Now
+        </button>
+        <% } %>
+      </div>
+
+      <div class="pricing-plan">
+        <img src="https://s21.postimg.cc/tpm0cge4n/space-ship.png" alt="" class="pricing-img" />
+        <h2 class="pricing-header">Lion Yearly Plan</h2>
+        <ul class="pricing-features">
+          <li class="pricing-features-item">Exclusive access to deals, perks, and resources.</li>
+          <li class="pricing-features-item">Offline access</li>
+          <li class="pricing-features-item">Complete access of courses</li>
+          <li class="pricing-features-item">Add your own courses</li>
+          <li class="pricing-features-item">Update your profile</li>
+          <li class="pricing-features-item">Supporting teachers, and businesses</li>
+          <li class="pricing-features-item">No ads</li>
+          <li class="pricing-features-item">Donations to charities that help preserve endangered wildlife.</li>
+        </ul>
+        <span class="pricing-price">$<%= yearlyCost %>/Year</span>
+        <% if(isSubscribed && period == "Year") { %>
+        <a href="#" class="pricing-button-red" data-toggle="modal" data-target="#smallModal">Cancel</a>
+        <% } else if(!isSubscribed){ %>
+        <form method="POST" action="/payment">
+          <input name="subscriptionType" value="Y" type="hidden" readonly />
+          <button type="submit" class="pricing-button is-featured">
+            Pay Now
+          </button>
+        </form>
+        <% } else { %>
+        <button type="submit" disabled="disabled" class="pricing-button is-featured">
+          Pay Now
+        </button>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- small modal -->
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">Cancelling Subscription?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4>Are you sure you want to cancel the Subscription?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          CANCEL
+        </button>
+        <a href="/payment/subscription-cancel" class="btn btn-danger">CONFIRM</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- http://localhost:8000/payment/subscription-cancel -->

@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="my-4 text-secondary">Search results for '<span id="search-word"></span>'
+            </h2>
+        </div>
+    </div>
+    <% if(courses) { %>
+        <div class="row mt-4" id="course-cards">
+            <div class="col d-flex flex-column justify-content-center align-items-center" id="search-cards">
+                <% courses.forEach(course=> { %>
+                    <div class="row w-100" style="border-bottom: 2px solid grey;">
+                        <div
+                            class="col-12 d-flex flex-xl-row flex-lg-row flex-column justify-content-center align-items-center">
+                            <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-10 pl-auto course-card">
+                                <div class="card-item card-preview tooltipstered">
+                                    <div class="preview-course-video">
+                                        <a href="/courses/view/<%=course._id%>">
+                                            <div class="mx-auto" style="width: 170px; height: 170px;">
+                                                <!-- <img src="<%= course.picture ? course.picture : 'picture' %>"
+                                            style="width: 100%; height: 100%;" alt="course-img"> -->
+                                            </div>
+                                            <div class="mx-auto" style="width: 170px;">
+                                                <h5 class="card-text text-center mt-2"
+                                                    style="height: 3.2rem; -webkit-line-clamp: 2 !important;">
+                                                    <%= course.title %>
+                                                </h5>
+                                            </div>
+                                        </a>
+                                    </div><!-- end card-content -->
+                                </div>
+                            </div>
+                            <div
+                                class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-12 pr-auto course-card d-flex flex-column align-items-center justify-content-center">
+                                <p class="h5">All time views --> <%= course.views %>
+                                </p>
+                                <div class="row">
+                                    <div class="col d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column">
+                                        <p class="h5">Last 30 days views :&nbsp;</p>
+                                        <p class="h5"> (from <%= course.time %>) --> <%= course.thirtyViews.views %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+        <% if(buttons> 1) { %>
+            <div class="mt-2 pt-4 border-top row d-flex justify-content-center">
+                <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <button type="button" id="page-nav-backward" class="btn btn-info btn-lg disabled"><i
+                                class="fa fa-arrow-left"></i></button>
+                        <% for(i=0; buttons> i ; i++) {%>
+                            <% if( i===0) { %>
+                                <button type="button" class="page-nav btn btn-info btn-lg active font-weight-bolder">
+                                    <%= i + 1 %>
+                                </button>
+                                <% } else if(i> 8) { %>
+                                    <button type="button"
+                                        class="page-nav btn btn-info btn-lg font-weight-bolder d-none">
+                                        <%= i + 1 %>
+                                    </button>
+                                    <% } else { %>
+                                        <button type="button" class="page-nav btn btn-info btn-lg font-weight-bolder">
+                                            <%= i + 1 %>
+                                        </button>
+                                        <% } %>
+                                            <% } %>
+                                                <% if(buttons===1) { %>
+                                                    <button type="button" id="page-nav-forward"
+                                                        class="btn btn-info btn-lg disabled"><i
+                                                            class="fa fa-arrow-right"></i></button>
+                                                    <% } else { %>
+                                                        <button type="button" id="page-nav-forward"
+                                                            class="btn btn-info btn-lg"><i
+                                                                class="fa fa-arrow-right"></i></button>
+                                                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+                <% } else { %>
+                    <div class="row">
+                        <div class="col">
+                            <h2 class="my-4 border-bottom text-secondary">You have not uploaded any courses yet!</h2>
+                            <a href="/pages/submit-course-page">
+                                <button class="btn btn-success btn-large rounded-pill btn-block">Upload now</button></a>
+                        </div>
+                    </div>
+                    <% } %>
+</div>

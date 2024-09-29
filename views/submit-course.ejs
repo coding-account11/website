@@ -1,0 +1,119 @@
+<!-- ================================
+    START DASHBOARD AREA
+================================= -->
+
+<section class="dashboard-area">
+  <div class="container">
+    <% if(!isSubscribed) { %>
+      <div data-toggle="modal" data-target="#smallModalTwo" class="lock-container">
+        <span class="lock"></span>
+      </div>
+      <% } %>
+        <div class="row mt-5" id="course-form-container">
+
+          <div class="col-lg-12">
+            <h3 class="widget-title">Add Job</h3>
+          </div>
+        </div>
+        <form method="post" action="/courses/addCourse" id="course-form">
+          <div class="row mt-5">
+            <div class="col-lg-12">
+              <div class="card-box-shared">
+                <div class="card-box-shared-title">
+                  <h3 class="widget-title">Basic info</h3>
+                </div>
+                <div class="card-box-shared-body">
+                  <div class="user-form">
+                    <div class="contact-form-action">
+                      <div class="row d-flex justify-content-center">
+                        <div class="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-10">
+                          <div class="input-box">
+                            <label class="label-text">Job Title<span class="primary-color-2 ml-1">*</span></label>
+                            <div class="form-group">
+                              <input pattern="[a-zA-Z0-9 ]+" title="must contain numbers and letters only" minlength="8"
+                                required class="form-control all-inputs" type="text" name="inputCourseTitle"
+                                placeholder="Job title" />
+                              <span class="la la-file-text-o input-icon"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end col-lg-6 -->
+                        <div class="col-lg-12">
+                          <div class="input-box">
+                            <label class="label-text">Job Description<span class="primary-color-2 ml-1">*</span></label>
+                            <div class="form-group">
+                              <textarea required class="message-control form-control all-inputs"
+                                name="inputCourseDescription" placeholder="Write job description here"
+                                style="resize: none"></textarea>
+                              <span class="la la-pencil input-icon"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end col-lg-12 -->
+                        <div class="col-xl-6 col-lg-6 col-md-7 col-10">
+                          <div class="input-box">
+                            <label for="input-course-category" class="label-text">Job Category<i
+                                class="la la-question ml-1 tip" data-toggle="tooltip" data-placement="top"
+                                title="Category of your job offer"></i></label>
+                            <div class="form-group">
+                              <select required class="form-control" name="inputCourseCategory">
+                                <option>Select one of the following</option>
+                                <option>lawn mowing</option>
+                                <option>pressure washing</option>
+                                <option>cleaning</option>
+                                <option>moving</option>
+                                <option>pet sitting</option>
+                                <option>dog walking</option>
+                                <option>babysitting</option>
+                              </select>
+                              <span class="la la-th input-icon"></span>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                      <!-- end row -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- end card-box-shared -->
+            </div>
+            <!-- end col-lg-12 -->
+          </div>
+          <!-- end row -->
+          <div class="row">
+            <div class="col-lg-12 d-flex justify-content-center">
+              <button class="d-none" type="submit" id="submit-form"></button>
+              <button class="theme-btn" id="submit-btn" type="button">
+                Submit Job
+              </button>
+            </div>
+          </div>
+          <!-- end row -->
+        </form>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="copyright-content pt-0 pb-4 border-top-0 text-center">
+              <div class="row">
+                <div class="col-lg-12">
+                  <p class="copy__desc">
+                    >
+                  </p>
+                </div>
+                <!-- end col-lg-12 -->
+              </div>
+              <!-- end row -->
+            </div>
+            <!-- end copyright-content -->
+          </div>
+          <!-- end col-lg-12 -->
+        </div>
+  </div>
+  <!-- end container-fluid -->
+</section>
+<!-- end dashboard-area -->
+<!-- ================================
+END DASHBOARD AREA
+================================= -->

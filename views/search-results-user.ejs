@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="my-4 text-secondary">Search results for '<span id="search-word"><%= searchWord %></span>'</h2>
+        </div>
+    </div>
+    <% if(searches) { %>
+    <div class="row d-flex justify-content-center" id="search-cards">
+        <% searches.forEach(search => { %>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-9 mb-4 search-card">
+            <div class="card">
+                <a href="/profiles/view/<%= search.username %>">
+                    <img src="/images/black-background-image.jpg" class="px-4 pt-4 card-img-top" alt="...">
+                    <div class="card-body p-4" style="min-height: 200px; max-height: 200px;">
+                        <h5 class="card-title"><%= search.username %></h5>
+                        <p class="card-text text-secondary" style="height: 110px;"><%= search.bio %>
+                        </p>
+                        <!-- <div class="d-flex flex-row justify-content-start">
+                            <button class="btn btn-outline-primary d-inline-block rounded mt-3"
+                                style="width: 80px;">Friend+
+                            </button>
+                            <button class="btn btn-outline-danger d-inline-block rounded mx-auto mt-3"
+                                style="width: 80px;">Block
+                            </button>
+                        </div> -->
+                    </div>
+                </a>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+    <div class="mt-2 pt-4 border-top row d-flex justify-content-center">
+        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <button type="button" id="page-nav-backward" class="btn btn-info btn-lg disabled"><i
+                        class="fa fa-arrow-left"></i></button>
+                <% for(i = 0; buttons > i ; i++) {%>
+                <% if( i === 0) { %>
+                <button type="button"
+                    class="page-nav btn btn-info btn-lg active font-weight-bolder"><%= i + 1 %></button>
+                <% } else if(i > 8) { %>
+                <button type="button"
+                    class="page-nav btn btn-info btn-lg font-weight-bolder d-none"><%= i + 1 %></button>
+                <% } else { %>
+                <button type="button" class="page-nav btn btn-info btn-lg font-weight-bolder"><%= i + 1 %></button>
+                <% } %>
+                <% } %>
+                <% if(buttons === 1) { %>
+                <button type="button" id="page-nav-forward" class="btn btn-info btn-lg disabled"><i
+                        class="fa fa-arrow-right"></i></button>
+                <% } else { %>
+                <button type="button" id="page-nav-forward" class="btn btn-info btn-lg"><i
+                        class="fa fa-arrow-right"></i></button>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <% } else { %>
+    <div class="row">
+        <div class="col">
+            <h2 class="my-4 border-bottom text-secondary">No matches found!</h2>
+        </div>
+    </div>
+    <% } %>
+</div>
